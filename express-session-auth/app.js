@@ -22,15 +22,26 @@ require('dotenv').config();
 // Create the Express application
 var app = express();
 
+// Middleware for parsing HTTP Responses / Using built in Express parsers instead of bodyParser
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 
 /**
  * -------------- SESSION SETUP ----------------
  */
 
-// TODO
+const sessionStore = new MongoStore({ mongooseConnection: connection, collection: 'sessions' })
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: sessionStore,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // Expiration of 1 day in milliseconds
+  }
+}))
 
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------

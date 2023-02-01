@@ -8,24 +8,24 @@ const User = connection.models.User;
  * -------------- POST ROUTES ----------------
  */
 
- // TODO
- router.post('/login', (req, res, next) => {});
+// TODO
+router.post('/login', (req, res, next) => { });
 
- // TODO
- router.post('/register', (req, res, next) => {});
+// TODO
+router.post('/register', (req, res, next) => { });
 
 
- /**
- * -------------- GET ROUTES ----------------
- */
+/**
+* -------------- GET ROUTES ----------------
+*/
 
 router.get('/', (req, res, next) => {
-    res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
+    res.send(`<h1>Home</h1><p>Please <a href="/register">register</a></p>`);
 });
 
 // When you visit http://localhost:3000/login, you will see "Login Page"
 router.get('/login', (req, res, next) => {
-   
+
     const form = '<h1>Login Page</h1><form method="POST" action="/login">\
     Enter Username:<br><input type="text" name="username">\
     <br>Enter Password:<br><input type="password" name="password">\
@@ -44,7 +44,7 @@ router.get('/register', (req, res, next) => {
                     <br><br><input type="submit" value="Submit"></form>';
 
     res.send(form);
-    
+
 });
 
 /**
@@ -54,7 +54,7 @@ router.get('/register', (req, res, next) => {
  * Also, look up what behaviour express session has without a maxage set
  */
 router.get('/protected-route', (req, res, next) => {
-    
+
     // This is how you check if a user is authenticated and protect a route.  You could turn this into a custom middleware to make it less redundant
     if (req.isAuthenticated()) {
         res.send('<h1>You are authenticated</h1><p><a href="/logout">Logout and reload</a></p>');
