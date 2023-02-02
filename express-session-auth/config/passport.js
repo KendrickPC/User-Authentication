@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const connection = require('./database');
 const User = connection.models.User;
+const verifyPassword = require('../lib/passwordUtils').verifyPassword
 
 // Define verified callback for the Passport 'local' strategy
 // Usage --> Configure Strategy
