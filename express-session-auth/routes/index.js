@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const passport = require('passport');
-const passwordUtils = require('../lib/passwordUtils');
+const genPassword = require('../lib/passwordUtils').genPassword;
 const connection = require('../config/database');
 const User = connection.models.User;
 
@@ -8,11 +8,15 @@ const User = connection.models.User;
  * -------------- POST ROUTES ----------------
  */
 
-// TODO
-router.post('/login', passport.authenticate('local',), (req, res, next) => { });
+// Login route
+router.post('/login', passport.authenticate('local'), (req, res, next) => {
 
-// TODO
-router.post('/register', (req, res, next) => { });
+});
+
+// Register new user route
+router.post('/register', (req, res, next) => {
+
+});
 
 
 /**
