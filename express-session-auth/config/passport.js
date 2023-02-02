@@ -4,6 +4,11 @@ const connection = require('./database');
 const User = connection.models.User;
 const verifyPassword = require('../lib/passwordUtils').verifyPassword
 
+// const customFields = {
+//   usernameField: 'uname',
+//   passwordField: 'pw'
+// }
+
 // Define verified callback for the Passport 'local' strategy
 // Usage --> Configure Strategy
 // https://www.passportjs.org/packages/passport-local/

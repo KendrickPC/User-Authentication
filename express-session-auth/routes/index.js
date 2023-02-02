@@ -15,7 +15,23 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 
 // Register new user route
 router.post('/register', (req, res, next) => {
+    // console.log("req.body: ", req.body)
+    const saltHash = genPassword(req.body.password);
 
+    const salt = saltHash.salt;
+    const hash = saltHash.hash;
+
+    const newUser = new User({
+        username: req.body.username,
+        hash: hash,
+        salt: salt
+    })
+
+    newUser.save()
+        .then((user) => {
+            console.log(user);
+        })
+    res.redirect('/login');
 });
 
 
