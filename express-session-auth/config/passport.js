@@ -16,3 +16,22 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+// https://www.passportjs.org/concepts/authentication/downloads/html/
+// To maintain a login session, Passport serializes and deserializes user information to and from the session. 
+// The information that is stored is determined by the application, which supplies a serializeUser and a deserializeUser function.
+passport.serializeUser(function (user, cb) {
+  process.nextTick(function () {
+    return cb(null, {
+      id: user.id,
+      username: user.username,
+      picture: user.picture
+    });
+  });
+});
+
+passport.deserializeUser(function (user, cb) {
+  process.nextTick(function () {
+    return cb(null, user);
+  });
+});

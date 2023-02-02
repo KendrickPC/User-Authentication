@@ -46,8 +46,9 @@ app.use(session({
 /**
  * -------------- PASSPORT AUTHENTICATION ----------------
  */
-
+// Refreshes passport middleware every time we load a route
 app.use(passport.initialize());
+// Serialize and Deserialize user (w/Express Session Middleware giving us access to req.session object persisting to DB under sessions collection)
 app.use(passport.session());
 
 

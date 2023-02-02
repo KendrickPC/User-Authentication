@@ -1,8 +1,8 @@
 const crypto = require('crypto');
 
 // TODO
-function validPassword(password, hash, salt) {}
-function genPassword(password) {}
+function verifyPassword(password, hash, salt) { }
+function genPassword(password) { }
 
-module.exports.validPassword = validPassword;
+module.exports.verifyPassword = verifyPassword;
 module.exports.genPassword = genPassword;
