@@ -11,16 +11,23 @@ const MongoStore = require('connect-mongo')(session);
 
 // Need to require the entire Passport config module so app.js knows about it
 require('./config/passport');
+// Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
+require('dotenv').config();
+// Create the Express application
+const app = express();
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 /**
  * -------------- GENERAL SETUP ----------------
  */
 
-// Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
-require('dotenv').config();
 
-// Create the Express application
-const app = express();
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
