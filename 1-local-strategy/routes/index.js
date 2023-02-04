@@ -4,19 +4,35 @@ const passwordUtils = require('../lib/passwordUtils');
 const connection = require('../config/database');
 const User = connection.models.User;
 
+const genPassword = require('../lib/passwordUtils').genPassword
+
 /**
  * -------------- POST ROUTES ----------------
  */
 
-// TODO
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
 
 });
 
-// TODO
 router.post('/register', (req, res, next) => {
+    const saltHash = genPassword(req.body.pw);
 
+    const salt = saltHash.salt
+    const hash = saltHash.hash
+
+    const newUser = new User({
+        username: req.body.uname,
+        hash: hash,
+        salt: salt,
+    })
+
+    newUser.save()
+        .then((user) => {
+            console.log(user);
+        })
+    res.redirect('/login');
 });
+
 
 
 /**
