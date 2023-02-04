@@ -16,18 +16,16 @@ require('dotenv').config();
 // Create the Express application
 const app = express();
 
+/**
+ * -------------- PASSPORT AUTHENTICATION ----------------
+ */
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-
 
 /**
  * -------------- GENERAL SETUP ----------------
  */
-
-
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,12 +46,8 @@ app.use(session({
   }
 }));
 
-/**
- * -------------- PASSPORT AUTHENTICATION ----------------
- */
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 /**
