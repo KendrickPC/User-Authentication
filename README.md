@@ -39,3 +39,4 @@ Symmetric cryptography is identified by a single key.
 - [x] Mathematically links the private and public keys
 
 ![Elliptic Curve Cryptography](https://cdn.ttgtmedia.com/rms/onlineimages/elliptical_curve_showing_three_points_of_intersection-f.png)
+![Elliptic Curve Cryptography](./assets/img/elliptic-curve-cryptography.png)
