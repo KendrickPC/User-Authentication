@@ -1,5 +1,7 @@
-const base64url = require('base64url')
-
+const base64url = require('base64url');
+const crypto = require('crypto');
+const signatureFunction = crypto.createSign('RSA-SHA256')
+const fs = require('fs');
 
 
 
@@ -32,3 +34,36 @@ console.log(decodedPayload);
 // Signature has not been decrypted YET...
 console.log(decodedSignature);
 */
+
+const headerObj = {
+  alg: 'RS256',
+  typ: 'JWT'
+};
+
+const payloadObj = {
+  sub: '1234567890',
+  name: 'John Doe',
+  admin: true,
+  iat: 1516239022
+};
+
+const headerObjString = JSON.stringify(headerObj);
+const payloadObjString = JSON.stringify(payloadObj);
+
+// console.log(typeof headerObjString, headerObjString);
+// console.log(typeof payloadObjString, payloadObjString);
+
+// Converting JSON string format into base64url
+const base64UrlHeader = base64url(headerObjString)
+const base64UrlPayload = base64url(payloadObjString)
+
+console.log(base64UrlHeader);
+console.log(base64UrlPayload);
+
+// Signing and issuing the JWT
+// Take the hash of the base64url header & payload data, sign that has, and put that signed has into the signature
+// this is the data that is ACTUALLY hashed using the SHA256 hashing function. All done in the node crypto library.
+// Hashing the data, then signing the hash.
+signatureFunction.write(base64UrlHeader + '.' + base64UrlPayload);
+signatureFunction.end()
+
