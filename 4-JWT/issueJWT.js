@@ -3,8 +3,6 @@ const crypto = require('crypto');
 const signatureFunction = crypto.createSign('RSA-SHA256')
 const fs = require('fs');
 
-
-
 // We don't need the code below - we want to derive the JWT from scratch.
 /*
 const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
@@ -57,8 +55,8 @@ const payloadObjString = JSON.stringify(payloadObj);
 const base64UrlHeader = base64url(headerObjString)
 const base64UrlPayload = base64url(payloadObjString)
 
-console.log(base64UrlHeader);
-console.log(base64UrlPayload);
+// console.log(base64UrlHeader);
+// console.log(base64UrlPayload);
 
 // Signing and issuing the JWT
 // Take the hash of the base64url header & payload data, sign that has, and put that signed has into the signature
@@ -66,4 +64,14 @@ console.log(base64UrlPayload);
 // Hashing the data, then signing the hash.
 signatureFunction.write(base64UrlHeader + '.' + base64UrlPayload);
 signatureFunction.end()
+
+const PRIV_KEY = fs.readFileSync(__dirname + '/priv_key.pem', 'utf8');
+// Signing the data giving us a base64 encoded signature.
+const signatureBase64 = signatureFunction.sign(PRIV_KEY, 'base64');
+
+// To actually get the JWT, we need to convert base64 to base64url
+// We can do this with the npm library base64url
+const signatureBase64Url = base64url.fromBase64(signatureBase64);
+console.log("signatureBase64Url::: ", signatureBase64Url);
+
 
