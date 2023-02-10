@@ -12,7 +12,7 @@ require('dotenv').config();
  * 
  * DB_STRING=mongodb://<user>:<password>@localhost:27017/database_name
  * DB_STRING_PROD=<your production database string>
- */ 
+ */
 
 const devConnection = process.env.DB_STRING;
 const prodConnection = process.env.DB_STRING_PROD;
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
     });
 
     mongoose.connection.on('connected', () => {
-        console.log('Database connected');
+        console.log('Database connected development');
     });
 }
 

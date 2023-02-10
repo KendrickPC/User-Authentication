@@ -2,6 +2,8 @@
 
 ![Our Options](../assets/img/passport-jwt-options.png)
 
+[Passport JWT Strategy Documentation](https://www.passportjs.org/packages/passport-jwt/)
+
 #### The JWT Authentication Process:
 JSON Web Tokens (JWT) is a popular method for authentication and authorization in web applications. The JWT authentication process works as follows:
 
@@ -20,3 +22,5 @@ JSON Web Tokens (JWT) is a popular method for authentication and authorization i
 7. If the token is invalid or expired, the server denies access and sends an error response.
 
 In summary, JWT provides a way for the client and server to securely exchange information about the user and ensures that only the server can grant access to the protected resources.
+
+
